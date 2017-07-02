@@ -17,7 +17,7 @@ load_dotenv(find_dotenv())
 
 # Configuration -----------------------------------------------------------
 # ALARM_PINS should be a comma-separated list of 4 digit pins
-PINS = os.environ.get('ALARM_PINS').split(',')
+PINS = os.environ.get('PINS').split(',')
 MQTT_HOST = os.environ.get('MQTT_HOST')
 MQTT_USER = os.environ.get('MQTT_USER')
 MQTT_PASS = os.environ.get('MQTT_PASS')
