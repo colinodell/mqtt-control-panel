@@ -7,7 +7,7 @@ A simple alarm control panel for Home Assistant's `manual_mqtt` alarm. Designed 
 # Hardware
 
  - Raspberry Pi Zero Wireless (other modern Pis will likely work fine)
- - Adafruit PiTFT 3.5" display
+ - [Adafruit PiTFT 3.5" display](https://www.adafruit.com/product/2441)
 
 # Requirements
 
