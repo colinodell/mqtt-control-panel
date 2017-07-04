@@ -6,6 +6,7 @@ import sys
 from time import sleep
 import paho.mqtt.client as mqtt
 
+from alarmpanel import Motion
 from alarmpanel.button import \
     STATE_DEFAULT, STATE_PRESSED,\
     STATE_1, STATE_2, STATE_3, STATE_4_BAD, STATE_4_GOOD,\
@@ -25,6 +26,7 @@ MQTT_PASS = os.environ.get('MQTT_PASS')
 MQTT_CLIENT_ID = os.environ.get('MQTT_CLIENT_ID', 'alarmpanel')
 MQTT_STATE_TOPIC = os.environ.get('MQTT_STATE_TOPIC', 'home/alarm')
 MQTT_COMMAND_TOPIC = os.environ.get('MQTT_COMMAND_TOPIC', 'home/alarm/set')
+PIR_GPIO_PIN = os.environ.get('PIR_GPIO_PIN', None)
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -88,6 +90,10 @@ def signal_handler(signal, frame):
     pygame.quit()
     client.loop_stop()
     client.disconnect()
+
+    if PIR_GPIO_PIN:
+        ui.on()
+
     sys.exit()
 
 
@@ -142,6 +148,12 @@ btnArmAway = ui.create_button((304, 244, 152, 52), imageFiles={STATE_DEFAULT: 'a
 
 # Draw the screen
 ui.update()
+
+if PIR_GPIO_PIN:
+    # Get the PI sensor up-and-running
+    motion = Motion(ui, PIR_GPIO_PIN)
+
+# Wait for everything
 sleep(1)
 
 
@@ -235,3 +247,6 @@ while True:
             client.reconnect()
         except:
             print "MQTT reconnect failed. Retrying..."
+
+    if PIR_GPIO_PIN:
+        motion.check()

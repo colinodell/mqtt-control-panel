@@ -4,6 +4,8 @@ import pygame
 
 from alarmpanel.button import STATE_DEFAULT
 
+BACKLIGHT_CONTROL = '/sys/class/backlight/soc:backlight/brightness'
+
 # A simple UI which only redraws parts of the screen as needed (faster than redrawing the whole screen all the time)
 class UI:
     def __init__(self, background = None):
@@ -12,6 +14,9 @@ class UI:
         os.putenv('SDL_FBDEV', '/dev/fb1')
         os.putenv('SDL_MOUSEDRV', 'TSLIB')
         os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
+
+        self._backlight_on = True
+        self.on()
 
         # Init pygame and screen
         print "Initting..."
@@ -106,3 +111,17 @@ class UI:
                     # Redraw other buttons which might be stuck in the down position
                     elif b.state == STATE_PRESSED:
                         b.set_state(STATE_DEFAULT)
+
+    def off(self):
+        if self._backlight_on:
+            print "Turning display off"
+            with open(BACKLIGHT_CONTROL, 'w') as f:
+                f.write('0')
+            self._backlight_on = False
+
+    def on(self):
+        if not self._backlight_on:
+            print "Turning display on"
+            with open(BACKLIGHT_CONTROL, 'w') as f:
+                f.write('1')
+            self._backlight_on = True
