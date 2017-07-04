@@ -231,4 +231,7 @@ while True:
     else:
         status_line_2.set('Connecting to MQTT...')
         ui.update()
-        client.reconnect()
+        try:
+            client.reconnect()
+        except:
+            print "MQTT reconnect failed. Retrying..."
