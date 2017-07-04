@@ -26,6 +26,8 @@ MQTT_CLIENT_ID = os.environ.get('MQTT_CLIENT_ID', 'alarmpanel')
 MQTT_STATE_TOPIC = os.environ.get('MQTT_STATE_TOPIC', 'home/alarm')
 MQTT_COMMAND_TOPIC = os.environ.get('MQTT_COMMAND_TOPIC', 'home/alarm/set')
 
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
 pin_input_string = ''
 current_state = 'armed_home'
 pending_state = ''
