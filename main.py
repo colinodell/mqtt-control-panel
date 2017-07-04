@@ -19,6 +19,7 @@ load_dotenv(find_dotenv())
 # ALARM_PINS should be a comma-separated list of 4 digit pins
 PINS = os.environ.get('PINS').split(',')
 MQTT_HOST = os.environ.get('MQTT_HOST')
+MQTT_PORT = int(os.environ.get('MQTT_PORT', 1883))
 MQTT_USER = os.environ.get('MQTT_USER')
 MQTT_PASS = os.environ.get('MQTT_PASS')
 MQTT_CLIENT_ID = os.environ.get('MQTT_CLIENT_ID', 'alarmpanel')
@@ -211,7 +212,7 @@ client = mqtt.Client(MQTT_CLIENT_ID)
 client.on_connect = on_connect
 client.on_message = on_message
 client.username_pw_set(MQTT_USER, MQTT_PASS)
-client.connect_async(MQTT_HOST)
+client.connect_async(MQTT_HOST, MQTT_PORT)
 
 # Main loop ----------------------------------------------------------------
 signal.signal(signal.SIGTERM, signal_handler)
