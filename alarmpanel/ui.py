@@ -34,6 +34,7 @@ class UI:
 
         self._images = []
         self._buttons = []
+        self._status_lines = []
 
         self.update()
 
@@ -73,18 +74,14 @@ class UI:
 
     def create_status_line(self, rect, color=(255, 255, 255)):
         from alarmpanel import StatusLine
-        return StatusLine(self, pygame.Rect(rect), color)
+        status_line = StatusLine(self, pygame.Rect(rect), color)
 
-    def draw_text(self, message, rect, color):
+        self._status_lines.append(status_line)
 
-        # Redraw the background area behind the text
-        self.blit_background(rect)
+        return status_line
 
-        # Draw the label
-        label = self._font.render(message, 1, color)
-        self._screen.blit(label, rect)
-
-        self.schedule_update()
+    def render_text(self, text, color):
+        return self._font.render(text, 1, color)
 
     def schedule_update(self):
         self._needs_update = True

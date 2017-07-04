@@ -10,4 +10,12 @@ class StatusLine:
             self.message = message
 
             # Draw the label
-            self.ui.draw_text(self.message, self.rect, self.color)
+            self.draw()
+
+    def draw(self):
+        # Redraw the background area behind the text
+        self.ui.blit_background(self.rect)
+
+        # Draw the label
+        label = self.ui.render_text(self.message, self.color)
+        self.ui.blit(label, self.rect)
