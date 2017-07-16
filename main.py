@@ -250,3 +250,5 @@ while True:
 
     if PIR_GPIO_PIN:
         motion.check()
+
+    sleep(0.005) if pin_input_string else sleep(0.02)
