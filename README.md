@@ -4,6 +4,8 @@ A simple alarm control panel for Home Assistant's `manual_mqtt` alarm. Designed 
 
 Video of the control panel in action: <https://www.youtube.com/watch?v=2Lei8n_aSJI>
 
+Instructions for building your own: <https://www.hackster.io/colinodell/diy-alarm-control-panel-for-home-assistant-ac1813>
+
 Display mockup:
 
 ![](screenshot.png)
