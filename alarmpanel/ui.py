@@ -13,7 +13,7 @@ class UI:
         os.putenv('SDL_VIDEODRIVER', 'fbcon')
         os.putenv('SDL_FBDEV', '/dev/fb1')
         os.putenv('SDL_MOUSEDRV', 'TSLIB')
-        os.putenv('SDL_MOUSEDEV', '/dev/input/touchscreen')
+        os.putenv('SDL_MOUSEDEV', '/dev/input/event0')
 
         self._backlight_on = True
         self.on()
