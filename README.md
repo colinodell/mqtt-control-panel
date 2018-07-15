@@ -10,6 +10,19 @@ Display mockup:
 
 ![](screenshot.png)
 
+# NO LONGER MAINTAINED
+
+**As of July 15, 2018 this project is no longer maintained.**  It should still (probably) work, but I am no longer providing support, fixing issues, or adding new features.
+
+See this community thread to request or offer support: https://community.home-assistant.io/t/diy-touch-screen-alarm-control-panel/23168
+
+If you'd like to use a more-polished alarm control panel, consider these fantastic alternatives by [@thanksmister](https://github.com/thanksmister):
+
+ - [Android Things for Raspberry Pi](https://github.com/thanksmister/androidthings-mqtt-alarm-panel)
+ - [Android App for Android Tablets](https://github.com//android-mqtt-alarm-panel)
+ 
+ Thank you to everyone who supported this project!
+
 # Hardware
 
  - Raspberry Pi Zero Wireless (other modern Pis will likely work fine)
